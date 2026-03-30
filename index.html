@@ -21,7 +21,6 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // EXPOR PARA O RESTO DO SISTEMA
   window.db = db;
   window.doc = doc;
   window.getDoc = getDoc;
@@ -30,12 +29,12 @@
  <script src="script.js" defer></script>
 
   <style>
-    /* --- Estilo geral inspirado em macOS clean UI --- */
+    
     :root{
       --bg:#f5f6f7;
       --card:#ffffff;
       --muted:#6b7280;
-      --accent:#007aff; /* azul mac */
+      --accent:#007aff; 
       --danger:#ff3b30;
       --glass: rgba(255,255,255,0.6);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -122,8 +121,6 @@
     height: 100%;
     object-fit: cover; /* garante que a imagem preencha o quadrado */
     }
-
-
   
     html.dark {
     --bg: #3f3f3f;          /* fundo externo */
@@ -131,7 +128,6 @@
     --muted: #9ca3af;       /* textos secundários */
     --glass: rgba(0,0,0,0.4);
     }
-
 
     html.dark,
     html.dark body {
@@ -251,7 +247,6 @@
    right: 6px;
    }
 
-
   </style>
 </head>
 <body>
@@ -313,7 +308,7 @@
 
           <div style="margin-top:18px">
             <label class="small">Pesquisar</label>
-            <input id="search" type="text" placeholder="prefixo, placa, chassi..." />
+            <input id="search" type="text" placeholder="Prefixo, Placa ou chassi" />
           </div>
 
           <div style="margin-top:14px">
@@ -626,9 +621,8 @@
    const ref = doc(db, "frota", "principal");
    await setDoc(ref, { fleet });
 
-   renderApp(); // 🔑 força atualizar a tela
+   renderApp();
    }
-
 
     // --- Vehicle CRUD ---
     btnAddVehicle.addEventListener('click',()=>{ openVehicleModal(); });
@@ -643,7 +637,6 @@
     function closeVehicleModal(){ vehicleModal.style.display='none'; }
 
     function saveVehicle(){
-      console.log("CLIQUEI EM SALVAR VEÍCULO");
       const data = {
         id: editingId || ('v_'+Date.now()),
         prefixo: v_prefixo.value.trim(),
@@ -941,8 +934,6 @@
   });
 }
 
-
-
     // --- Export / Import ---
     btnExport.addEventListener('click',()=>{
       const dataStr = JSON.stringify(fleet, null, 2);
@@ -975,11 +966,9 @@
     await loadData();
     }
 
-
     document.getElementById("btnSaveLog").addEventListener("click", async () => {
     await saveData();
    });
-
 
     window.addEventListener('load', async () => {
     await ensureLoaded();
@@ -1035,7 +1024,6 @@
     });
   });
 }
-
 
   </script>
 </body>
